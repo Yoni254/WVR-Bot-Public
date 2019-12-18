@@ -10,6 +10,8 @@ This bot is a Private Discord Bot designed to work and help manage the _West Vir
 
 -If you wish to talk with me you may message me on Discord: 430423068423225347
 
+-Code is a bit of a mess as the bot is still being worked on.
+
 --------------------------------------------------
 
 # Information
