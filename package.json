@@ -1,0 +1,16 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "Bot for WVR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yonatan25",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^8.1.0",
+    "redis": "^2.8.0"
+  }
+}
