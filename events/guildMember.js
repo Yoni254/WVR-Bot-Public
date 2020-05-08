@@ -1,19 +1,22 @@
 const Discord = require('discord.js')
 const fcheck = require('../functions/check');
+const fCache = require('../functions/cache')
 
 module.exports = {
 
+    /** 
+     * When member leaves a server
+     * @param {object} member the member that left
+     * @param {object} bot the discord bot
+     */ 
     async memberLeave(member, bot) {
-
-
-        /** 
-         * When member leaves a server
-         * @param {object} member the member that left
-         * @param {object} bot the discord bot
-         */ 
 
         //try to run
         try {
+
+            // Remove Cache
+            await fCache.RemoveCache(member)
+
             //get the time member joined the server
             var d = member.joinedAt
             d = [d.getMonth()+1, d.getDate(), d.getFullYear(),].join('/')+' '+[d.getHours(),d.getMinutes(),d.getSeconds()].join(':');
@@ -23,19 +26,19 @@ module.exports = {
             //return if no channel
             if(!channel) return;
 
-            var pin;
+            var pin = false;
 
             async function removePin(){
                 //check if WVR server
-                pin = 'false';
-                if (await fcheck.isServerId(member, '437056044796215298') == 'true') {
+                pin = false;
+                if (await fcheck.isServerId(member, '437056044796215298')) {
                     //new array
                     var channelA = ["493436428911378442", "493444814717845504", "533532176159997952"]
 
                     //run 3 times
                     for (let i = 0; i < channelA.length; ++i) {
                         //get the channels
-                        bot.channels.get(channelA[i]).messages.fetchPinned().then(pinned => {
+                        await bot.channels.get(channelA[i]).messages.fetchPinned().then(pinned => {
                             //for every pinned message
                             for (const pinnedMessage of pinned) {
 
@@ -48,17 +51,21 @@ module.exports = {
                                     if (messageArgs[2] == `<@${member.id}>`) {
                                         console.log('A pinned member has left, removing pin: ' + pinnedMessage)
                                         pinnedMessage[1].unpin();
-                                        pin = 'true';
+                                        pin = true;
                                     }
 
                                 }                    
                             }
                         })
                     }
+                } else {
+                    console.log("not wvr");
+                    
                 }
-                console.log(pin)
+                console.log("Need to unpin? "+pin)
             }
             
+            await removePin()
 
             //new const discord rich embed
             const embed = new Discord.MessageEmbed()
@@ -67,7 +74,7 @@ module.exports = {
             embed.setDescription(`${member} ${member.user.tag}`)
             embed.setThumbnail(member.user.avatarURL())
             embed.addField('Joined at:', d)
-            if (pin == 'true') {
+            if (pin) {
                 embed.addField('Removed pin', 'Member was pinned for placement and left, removed pin.')
             }
             embed.setTimestamp()
@@ -84,16 +91,18 @@ module.exports = {
         
     },
 
+
+    /** 
+     * Sends a message when user joins 
+     * @param {object} member the member that joined
+     * @param {object} guild the guild the member joined
+     * @param {object} client the data clinet - Redis 
+     * @param {object} invites all the invites fetched before user joined
+     * @param {object} guildInvites the invites fetched from the guild after user joined
+     * @param {object} bot the WVR bot
+    */
     async memberJoin(member, guild, client, invites, guildInvites, bot) {
-        /** 
-         * Sends a message when user joins 
-         * @param {object} member the member that joined
-         * @param {object} guild the guild the member joined
-         * @param {object} client the data clinet - Redis 
-         * @param {object} invites all the invites fetched before user joined
-         * @param {object} guildInvites the invites fetched from the guild after user joined
-         * @param {object} bot the WVR bot
-        */
+        
 
         try {
             try {
@@ -165,13 +174,15 @@ module.exports = {
         }
     },
 
+
+    /**
+     * When member is banned from a server
+     * @param {object} guild the discord guild user was banned from
+     * @param {object} user the banned user
+     */
     async memberBanned(guild, user) {
         
-        /**
-         * When member is banned from a server
-         * @param {object} guild the discord guild user was banned from
-         * @param {object} user the banned user
-         */
+        
 
         //get bot commands channel
         const channel = guild.channels.find(channel => channel.name === "bot-commands");

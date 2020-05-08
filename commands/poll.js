@@ -6,81 +6,81 @@ module.exports = {
 
         let pollargs = message.content.slice(6).split(/"(.+?)"/g);
         if (!pollargs[5]) return message.channel.send('Woops you need more args');
-        const embed = new Discord.RichEmbed();          //poll embed
+        const embed = new Discord.MessageEmbed();          //poll embed
         embed.setColor('e39c19#');
-        embed.setAuthor('Poll', 'https://cdn1.imggmi.com/uploads/2019/9/28/e962b00255a393179b6155cf8fcbe410-full.png');
+        embed.setAuthor('Poll', 'https://i.imgur.com/yBIqOej.png');
         if (!pollargs[6]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}          
-            :regional_indicator_b:${pollargs[5]}\n`)      //2 args
+:regional_indicator_a:${pollargs[3]}          
+:regional_indicator_b:${pollargs[5]}\n`)      //2 args
         } else if (!pollargs[8]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}\n`)      //3 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}\n`)      //3 args
         } else if (!pollargs[10]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}\n`)      //4 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}\n`)      //4 args
         } else if (!pollargs[12]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}\n`)     //5 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}\n`)     //5 args
         } else if (!pollargs[14]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}
-            :regional_indicator_f:${pollargs[13]}\n`)     //6 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}
+:regional_indicator_f:${pollargs[13]}\n`)     //6 args
         } else if (!pollargs[16]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}
-            :regional_indicator_f:${pollargs[13]}
-            :regional_indicator_g:${pollargs[15]}\n`)     //7 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}
+:regional_indicator_f:${pollargs[13]}
+:regional_indicator_g:${pollargs[15]}\n`)     //7 args
         } else if (!pollargs[18]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}
-            :regional_indicator_f:${pollargs[13]}
-            :regional_indicator_g:${pollargs[15]}
-            :regional_indicator_h:${pollargs[17]}\n`)       //8 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}
+:regional_indicator_f:${pollargs[13]}
+:regional_indicator_g:${pollargs[15]}
+:regional_indicator_h:${pollargs[17]}\n`)       //8 args
         } else if (!pollargs[20]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}
-            :regional_indicator_f:${pollargs[13]}
-            :regional_indicator_g:${pollargs[15]}
-            :regional_indicator_h:${pollargs[17]}
-            :regional_indicator_i:${pollargs[19]}\n`)       //9 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}
+:regional_indicator_f:${pollargs[13]}
+:regional_indicator_g:${pollargs[15]}
+:regional_indicator_h:${pollargs[17]}
+:regional_indicator_i:${pollargs[19]}\n`)       //9 args
         } else if (!pollargs[22]) {
             embed.setDescription(`**${pollargs[1]}**\n
-            :regional_indicator_a:${pollargs[3]}
-            :regional_indicator_b:${pollargs[5]}
-            :regional_indicator_c:${pollargs[7]}
-            :regional_indicator_d:${pollargs[9]}
-            :regional_indicator_e:${pollargs[11]}
-            :regional_indicator_f:${pollargs[13]}
-            :regional_indicator_g:${pollargs[15]}
-            :regional_indicator_h:${pollargs[17]}
-            :regional_indicator_i:${pollargs[19]}
-            :regional_indicator_j:${pollargs[21]}\n`)       //10 args
+:regional_indicator_a:${pollargs[3]}
+:regional_indicator_b:${pollargs[5]}
+:regional_indicator_c:${pollargs[7]}
+:regional_indicator_d:${pollargs[9]}
+:regional_indicator_e:${pollargs[11]}
+:regional_indicator_f:${pollargs[13]}
+:regional_indicator_g:${pollargs[15]}
+:regional_indicator_h:${pollargs[17]}
+:regional_indicator_i:${pollargs[19]}
+:regional_indicator_j:${pollargs[21]}\n`)       //10 args
         } else {
             message.channel.send('too many args');
             return;

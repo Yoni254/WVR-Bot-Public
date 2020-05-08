@@ -2,6 +2,9 @@ const Discord = require('discord.js');      //discord bots
 const wait = require('util').promisify(setTimeout);     //wait x time function
 
 module.exports = {
+
+    //fucking hell this one is a mess yeah good luck reading this I aint taking the time to sort this
+    
     name: 'HookEvent',
     description: "Webhook NPC events",
     execute(bot, client) {
@@ -120,8 +123,10 @@ module.exports = {
                     if(!HookEventArgs[51]) return console.log('Error')
                     Webhook.send(HookEventArgs[51])
                 }
-                wait(5000);
-                Webhook.delete();
+                function del() {
+                    Webhook.delete();
+                }
+                setTimeout(del, 4000)
                 
             })
         }

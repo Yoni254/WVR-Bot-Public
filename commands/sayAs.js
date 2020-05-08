@@ -16,7 +16,13 @@ module.exports = {      //discord command handler
                 })
                 
             })
-            message.delete();
+            try {
+                message.delete();
+            }
+            catch (err) {
+                console.log("Couldn't Delete Message in SayAs Command");
+                
+            }
         }
 
     }

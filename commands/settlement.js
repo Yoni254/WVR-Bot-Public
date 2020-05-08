@@ -1,4 +1,5 @@
 const Discord = require('discord.js');      //discord bots
+require('../index')
 module.exports = {
     name: 'Settlement',
     description: "Settlement info commands",
@@ -40,7 +41,6 @@ module.exports = {
 
             //Get Other leaders
             var Leadership = [];
-            let LeaderRoles = ['530096928508084224', '536052149650587648', '591709645824065570', '591709878805069841', '494531115768610816', '493463288223629312', '562020358065225728', '553225421798244362', '615041600992837662', '518977167665922060', '518977004067094528', '581106776959614976']
             for (m of settlementmembers) {
                 let member = message.guild.members.get(m.id)
                 LeaderRoles.forEach(role => {

@@ -1,20 +1,21 @@
 const Discord = require('discord.js');      //discord bots
+const fcheck = require('../functions/check.js')
+require('../functions/check.js')
 module.exports = {
     name: 'Server',
     description: "Server info commands",
     execute(message, args) {
 
-        var channeltype = message.channel.type;
-        if (channeltype !== 'text') return message.channel.send('Error, this is not a server')
+        async function run() {
             if(args[1]==='id'){
                 message.channel.send(message.guild.id);
             }
             if(args[1]==='info'){
-
+    
                 var d = message.guild.createdAt,
                 d = [d.getMonth()+1, d.getDate(), d.getFullYear(),].join('/')+' '+[d.getHours(),d.getMinutes(),d.getSeconds()].join(':');
-
-
+    
+    
                 const embed = new Discord.MessageEmbed()
                 embed.setAuthor('Server Information: '+message.guild.name, 'https://i.imgur.com/yBIqOej.png')
                 embed.setThumbnail(message.guild.iconURL())
@@ -45,6 +46,20 @@ module.exports = {
                 embed.addField('Number of Administrators', message.guild.members.filter(member => member.hasPermission("ADMINISTRATOR")).size, true)
                 message.channel.send(embed)
             }
+        }
+
+        async function checkGuild() {
+            if (!await fcheck.isGuild(message)) {
+                message.channel.send("Not a server!")
+                return
+            } else {
+                run()
+            }
+        }
+        
+        checkGuild()
+
+        
             
     }
 }

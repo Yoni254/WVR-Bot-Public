@@ -16,17 +16,22 @@ module.exports = {
                 let logMessage = args[1]
                 let logsChannel = bot.channels.get('650725555561562113');
 
-                if (activityCheckId != messageReaction.message.id) return;
+                if (activityCheckId != messageReaction.message.id) return
+                console.log("Reaction on Place Check. checking "+ user.tag + ", " + user.id)
+                let userInList = false;
                 logsChannel.messages.fetch(logMessage).then(logMSG => {
                     let messageArgs = logMSG.content.split('\n');
                     for (let i = 0; i < messageArgs.length; ++i) {
-                        if (messageArgs[i] === `<@${user.id}>`) {
-                            console.log('Found you!')
+                        if (messageArgs[i].includes(`<@${user.id}>`) || messageArgs[i].includes(`<@!${user.id}>`)) {
+                            console.log('Found Member in list')
                             messageArgs[i] = `${ messageArgs[i]} 👌`
+                            userInList = true
                         }
                     }
                     logMSG.edit(messageArgs.join('\n'))
-                    
+                    if (!userInList) {
+                        console.log("User is not in list, list: " + logMSG.content);
+                    }
                 })
 
             })
@@ -41,7 +46,6 @@ module.exports = {
     },
 
     async PlaceCheck(messageReaction, user, client, bot) {
-
         try {
             client.get(messageReaction.message.channel.id + 'PlaceCheck', function(err, result) {
                 if (err) throw err;
@@ -53,17 +57,22 @@ module.exports = {
                 let logsChannel = messageReaction.message.channel;
 
                 if (logMessage != messageReaction.message.id) return;
-                console.log('Got it!')
+                console.log("Reaction on Place Check. checking "+ user.tag + ", " + user.id)
+                let userInList = false
                 logsChannel.messages.fetch(logMessage).then(logMSG => {
                     let messageArgs = logMSG.content.split('\n');
                     for (let i = 0; i < messageArgs.length; ++i) {
-                        if (messageArgs[i] === `<@${user.id}>`) {
-                            console.log('Found you!')
+                        if (messageArgs[i].includes(`<@${user.id}>`) || messageArgs[i].includes(`<@!${user.id}>`)) {
+                            console.log('Found Member in list!')
                             messageArgs[i] = `${messageArgs[i]} 👌`
+                            userInList = true
                         }
                     }
                     logMSG.edit(messageArgs.join('\n'))
-                    
+                    if (!userInList) {
+                        console.log(`User ${user.id} is not in the list, list: ${logMSG.content}`);
+                        
+                    }
                 })
 
             })

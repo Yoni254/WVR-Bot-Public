@@ -1,19 +1,17 @@
-const Discord = require('discord.js');      //discord bots
 const fcheck = require('../functions/check');
+require('../index')
 
 module.exports = {
     name: 'Place Check',
     description: "Sends a message in platfrom channels for settlement placing",
-    execute(message, args, bot, redis, client) {
+    /**
+     * sends a message in the platfrom announcement chats for placement
+     * @param {object} message the message that was sent
+     * @param {array} args the message args 
+     * @param redis the redis client commands
+     */
+    execute(message, args, redis) {
         
-        /**
-         * sends a message in the platfrom announcement chats for placement
-         * @param {object} message the message that was sent
-         * @param {object} bot the discord bot
-         * @param {array} args the message args 
-         * @param {client} the database client
-         * @param {redis} redis the data base commands
-         */
 
         //try to run
         try {
@@ -27,23 +25,23 @@ module.exports = {
                 //check if args 1 is xbox
                 if (args[1] == 'Xbox' || args[1] == 'xbox' || args[1] == 'xb' || args[1] == 'Xb' || args[1] == 'X' || args[1] == 'x') {
                     //channel is xbox announcements
-                    var channel = bot.channels.get(`545040250129612811`);
+                    var channel = Client.channels.get(`545040250129612811`);
                     //get xbox general
-                    var generalChannel = bot.channels.get('493444814717845504');
+                    var generalChannel = Client.channels.get('493444814717845504');
 
                 //check if args 1 is pc
                 } else if (args[1] == 'PC' || args[1] == 'Pc' || args[1] == 'pc') {
                     //channel is pc announcements
-                    var channel = bot.channels.get(`545040391049838602`);
+                    var channel = Client.channels.get(`545040391049838602`);
                     //get pc general
-                    var generalChannel = bot.channels.get('493436428911378442');
+                    var generalChannel = Client.channels.get('493436428911378442');
 
                 //check if args 1 is ps
                 } else if (args[1] == 'PS' || args[1] == 'Ps' || args[1] == 'ps') {
                     //chanel is announcements
-                    var channel = bot.channels.get(`545040074736402432`)
+                    var channel = Client.channels.get(`545040074736402432`)
                     //get general
-                    var generalChannel = bot.channels.get('533532176159997952')
+                    var generalChannel = Client.channels.get('533532176159997952')
 
                 //if no valid channel
                 } else {
@@ -78,7 +76,7 @@ module.exports = {
                         message.react('👌').then(messageReaction => {
                             messageReaction.message.react('👌').then(messageReaction =>{
                                 message.awaitReactions
-                                client.set(channel.id + 'PlaceCheck', message.id, redis.print);
+                                RedisClient.set(channel.id + 'PlaceCheck', message.id, redis.print);
                             })
                         })
                     })
